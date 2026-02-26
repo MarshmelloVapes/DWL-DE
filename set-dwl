@@ -20,7 +20,9 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
   makepgk -si
 
   echo -e "YAY has been installed...\n"
+  # CD out of YAY folder
   cd ..
+  # CD Back to primary folder
   cd ..
   sleep 2
   yay -S fuzzel
@@ -34,13 +36,16 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "Copying config files...\n"
     mkdir ~/.config
     mkdir ~/.scripts
+    mkdir ~/.install
     mkdir ~/Desktop
     mkdir ~/Documents
     mkdir ~/Videos
     mkdir ~/Photos
     
-    cp -R /Config/ ~/.config/
-    cp -R /Scripts/ ~/.scripts/
+    cp -r /Config/ ~/.config/
+    cp -r /Scripts/ ~/.scripts/
+
+    cp -r /Install ~/.install
 
     cp Scripts/start_dwl.sh ~/
 
@@ -48,13 +53,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     sudo chmod +x ~/.scripts/volume.sh
 fi
 
-cd ~/
-cd DWL-DE/Install/dwl
-sudo make clean install
-cd ..
-cd slstatus
-sudo make clean install
-
 ### Script is done ###
 echo -e "Script had completed...\n"
-echo -e "Start ./start_dwl.sh ...\n"
+echo -e "Copy the DWL folder and SLStatus folder and build...\n"
