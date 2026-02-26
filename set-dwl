@@ -51,8 +51,12 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     sudo chmod +x ~./start_dwl.sh
     sudo chmod +x ~/.scripts/volume.sh
+
+    cd ~/.install/dwl
+    sudo make clean install
+    cd ~/.install/slstatus
+    sudo make clean install
 fi
 
 ### Script is done ###
 echo -e "Script had completed...\n"
-echo -e "Copy the DWL folder and SLStatus folder and build...\n"
