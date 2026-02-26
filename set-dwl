@@ -1,0 +1,60 @@
+#!/bin/bash
+
+## Install packages for myself ####
+read -n1 -rep 'Would you like to install the packages? (y,n)' INST
+if [[ $INST == "Y" || $INST == "y" ]]; then
+  sudo pacman -S wayland wayland-protocols wlroots0.19 alacritty \
+  base-devel git firefox swaybg ttf-jetbrains-mono-nerd bluez \
+  bluez-utils pamixer pulseaudio-bluetooth thunar starship fish \
+  brightnessctl kmix obsidian xpdf tllist fcft pixman bluetui \
+  vlc vlc-plugin-ffmpeg
+
+  echo -e "Main packages installed...\n"
+  sleep 2
+  echo -e "Installing YAY for AUR helper...\n"
+  sleep 2
+  
+  cd Install/
+  git clone https://aur.archlinux.org/yay.git
+  cd yay
+  makepgk -si
+
+  echo -e "YAY has been installed...\n"
+  cd ..
+  cd ..
+  sleep 2
+  yay -S fuzzel
+
+  sudo systemctl enable --now bluetooth.service
+fi
+
+### Copy Config Files ###
+read -n1 -rep 'Would you like to copy config files? (y,n)' CFG
+if [[ $CFG == "Y" || $CFG == "y" ]]; then
+    echo -e "Copying config files...\n"
+    mkdir ~/.config
+    mkdir ~/.scripts
+    mkdir ~/Desktop
+    mkdir ~/Documents
+    mkdir ~/Videos
+    mkdir ~/Photos
+    
+    cp -R /Config/ ~/.config/
+    cp -R /Scripts/ ~/.scripts/
+
+    cp Scripts/start_dwl.sh ~/
+
+    sudo chmod +x ~./start_dwl.sh
+    sudo chmod +x ~/.scripts/volume.sh
+fi
+
+cd ~/
+cd DWL-DE/Install/dwl
+sudo make clean install
+cd ..
+cd slstatus
+sudo make clean install
+
+### Script is done ###
+echo -e "Script had completed...\n"
+echo -e "Start ./start_dwl.sh ...\n"
