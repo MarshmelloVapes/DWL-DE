@@ -1,0 +1,24 @@
+
+[terminal.shell]
+program = "/bin/fish"
+# args = ["-l"]
+
+[font]
+size = 11
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/gruvbox_dark.toml"
+]
+
+[window]
+opacity = 0.8
+
+[window.padding]
+x = 12
+y = 12
+
+[terminal]
