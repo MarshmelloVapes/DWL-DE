@@ -4,7 +4,7 @@
 read -n1 -rep 'Would you like to install the packages? (y,n)' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
   sudo pacman -S wayland wayland-protocols wlroots0.19 alacritty \
-  base-devel git firefox swaybg ttf-jetbrains-mono-nerd bluez \
+  base-devel wl-clipboard firefox swaybg ttf-jetbrains-mono-nerd bluez \
   bluez-utils pamixer pulseaudio-bluetooth thunar starship fish \
   brightnessctl kmix obsidian xpdf tllist fcft pixman bluetui \
   vlc vlc-plugin-ffmpeg helix
