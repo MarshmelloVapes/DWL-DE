@@ -7,7 +7,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
   base-devel wl-clipboard firefox swaybg ttf-jetbrains-mono-nerd bluez \
   bluez-utils pamixer pulseaudio-bluetooth thunar starship fish \
   brightnessctl kmix obsidian xpdf tllist fcft pixman bluetui \
-  vlc vlc-plugin-ffmpeg helix
+  vlc vlc-plugin-ffmpeg helix grim slurp
 
   echo -e "Main packages installed...\n"
   sleep 2
