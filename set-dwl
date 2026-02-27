@@ -58,13 +58,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     sudo chmod +x ~./start_dwl.sh
     sudo chmod +x ~/.scripts/volume.sh
-
-    cd ~/.install/dwl
-    sudo make clean install
-
-    sleep 2
-    cd ~/.install/slstatus
-    sudo make clean install
 fi
 
 ### Script is done ###
