@@ -7,7 +7,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
   base-devel git firefox swaybg ttf-jetbrains-mono-nerd bluez \
   bluez-utils pamixer pulseaudio-bluetooth thunar starship fish \
   brightnessctl kmix obsidian xpdf tllist fcft pixman bluetui \
-  vlc vlc-plugin-ffmpeg
+  vlc vlc-plugin-ffmpeg helix
 
   echo -e "Main packages installed...\n"
   sleep 2
@@ -16,14 +16,16 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
   
   cd Install/
   git clone https://aur.archlinux.org/yay.git
-  cd yay
-  makepgk -si
 
+  sleep 5
+  cd yay
+  makepkg -si
+
+  sleep 2
+  
   echo -e "YAY has been installed...\n"
   # CD out of YAY folder
-  cd ..
-  # CD Back to primary folder
-  cd ..
+  cd ~/DWL-DE
   sleep 2
   yay -S fuzzel
 
@@ -34,26 +36,33 @@ fi
 read -n1 -rep 'Would you like to copy config files? (y,n)' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "Copying config files...\n"
-    mkdir ~/.config
     mkdir ~/.scripts
     mkdir ~/.install
     mkdir ~/Desktop
     mkdir ~/Documents
     mkdir ~/Videos
     mkdir ~/Photos
-    
-    cp -r /Config/ ~/.config/
-    cp -r /Scripts/ ~/.scripts/
 
-    cp -r /Install ~/.install
+   cp -r Configs/alacritty ~/.config
+   cp -r Configs/background ~/.config
+   cp -r Configs/fish ~/.config
+   cp -r Configs/fuzzel ~/.config
+   cp -r Configs/helix ~/.config
+   cp Configs/starship.toml ~/.config
+
+   cp -r Install/dwl ~/.install
+   cp -r Install/slstatus ~/.install
 
     cp Scripts/start_dwl.sh ~/
+    cp Scripts/volume.sh ~/.scripts
 
     sudo chmod +x ~./start_dwl.sh
     sudo chmod +x ~/.scripts/volume.sh
 
     cd ~/.install/dwl
     sudo make clean install
+
+    sleep 2
     cd ~/.install/slstatus
     sudo make clean install
 fi
